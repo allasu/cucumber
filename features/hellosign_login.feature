@@ -1,3 +1,4 @@
+@my_tag
 Feature: HelloSign
 
   Scenario Outline: SignIn with wrong credentials
