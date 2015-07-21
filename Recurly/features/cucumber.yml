@@ -1,0 +1,1 @@
+entire: --tags @entire --format html --out report.html --format pretty
