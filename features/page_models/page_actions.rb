@@ -1,4 +1,6 @@
 class PageActions
+  include RSpec::Matchers
+  include RSpec::Expectations
 
   def initialize browser
     @browser = browser

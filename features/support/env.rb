@@ -1,5 +1,7 @@
 require 'selenium-webdriver'
 require 'rspec'
+require 'headless'
+
 
 SERVER_LABELS ={
     :production => "usps.com",
@@ -19,6 +21,8 @@ end
 def create_browser
   @browser = Selenium::WebDriver.for get_browser
   @browser.manage.window.maximize
+
+
 end
 
 def usps

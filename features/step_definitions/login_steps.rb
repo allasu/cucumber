@@ -32,3 +32,13 @@ Given(/^I should be signed in with "([^"]*)" and "([^"]*)"$/) do |login, passwor
     Then I click on Signin button
   }
 end
+
+And(/^I should get "([^"]*)"$/) do |user_error_message|
+  if usps.login_page.login_field.text.empty?
+    error = usps.home_page.no_user_error_message
+  else
+    error = usps.hone_page.wrong_password_error_message
+  end
+  expect(error.text).to be == user_error_message
+  expect(error.displayed?).to be == true
+end
