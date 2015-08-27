@@ -1,2 +1,2 @@
 login: --tags @login --format html --out report.html --format pretty
-zipcode: --tags @zipcode
+zipcode: --tags @zipcode --format html --out report.html --format pretty

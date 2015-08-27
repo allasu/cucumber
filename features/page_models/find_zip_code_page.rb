@@ -1,5 +1,3 @@
-require_relative "page_actions"
-
 class FindZipCodePage  < PageActions
 
   def path
@@ -36,13 +34,16 @@ class FindZipCodePage  < PageActions
   end
 
   def see_results
-    results = @browser.find_element(:id, 'result-list').find_elements(:tag_name, 'li')
-    expect(results.size).to be > 0
+    @browser.find_element(:id, 'result-list').find_elements(:tag_name, 'li')
 
-    results.each {|elm|
-      expect(elm.find_element(:css, 'span.zip').text).to be_truthy
+  end
+
+  def collect_zip_codes
+    zip_array = []
+    see_results.each {|elm|
+      #expect(elm.find_element(:css, 'span.zip').text).to be be_truthy
+      zip_array << elm.find_element(:css, 'span.zip').text
     }
-
   end
 
 end

@@ -38,5 +38,5 @@ Feature: Login functionality
     Then I click on Signin button
     And I should get "<password_error_message>"
     Examples:
-      | login        | password     |                     password_error_message                          |
+      | login        | password      |                     password_error_message                          |
       | koshka_masha | abrakadabra   |We do not recognize your username and/or password.  Please try again.|

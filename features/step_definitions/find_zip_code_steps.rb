@@ -1,5 +1,6 @@
 Given(/^I navigate to USPS look up Zip Code page$/) do
   create_browser
+  #binding.pry
   usps.find_zip_code_page.visit
 end
 
@@ -12,6 +13,7 @@ Then(/^I type "([^"]*)" to city field$/) do |city|
 end
 
 Then(/^I select "([^"]*)" from states dropdown list$/) do |state|
+  expect(state.dropdown).to include state
   usps.find_zip_code_page.select_state(state)
 end
 
@@ -20,5 +22,6 @@ And(/^I press Find Zip Code button$/) do
 end
 
 Then(/^I see results on look up a zip code page$/) do
-  usps.find_zip_code_page.see_results
+  expect(usps.find_zip_code_page.see_results.size).to be > 0
+  expect(usps.find_zip_code_page.collect_zip_codes).not_to include nil
 end

@@ -1,9 +1,11 @@
 require 'selenium-webdriver'
 require 'rspec'
-require 'headless'
+require 'pry'
+require_relative '../page_models/page_actions'
+Dir["../page_models/*.rb"].each {|file| require file}
 
 
-SERVER_LABELS ={
+server_labels ={
     :production => "usps.com",
     :trunk => "trunk.usps.com",
     :integration => "integration.usps.com"
@@ -15,7 +17,7 @@ end
 
 def get_environment
   env = (ENV['SERVER'] ||= :production).to_sym  #we give default value just in case ...
-  SERVER_LABELS[env]
+  server_labels[env]
 end
 
 def create_browser

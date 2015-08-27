@@ -34,11 +34,27 @@ Given(/^I should be signed in with "([^"]*)" and "([^"]*)"$/) do |login, passwor
 end
 
 And(/^I should get "([^"]*)"$/) do |user_error_message|
-  if usps.login_page.login_field.text.empty?
+  if usps.login_page.login_field.attribute('value').empty?
     error = usps.home_page.no_user_error_message
   else
-    error = usps.hone_page.wrong_password_error_message
+    error = usps.home_page.wrong_password_error_message
   end
   expect(error.text).to be == user_error_message
   expect(error.displayed?).to be == true
+  puts "Actual message is: " + user_error_message.to_s
+end
+
+Then(/^I press calculate a price link$/) do
+ usps.home_page.calculate_price.click
+end
+
+Then(/^I verify Zip Code Lookup URL$/) do
+  #1 move zip_code_lookup_link method to its own class page PriceCalculator (create it)
+  #2 verify HREF is not empty
+  usps.home_page.zip_code_lookup_link.attribute :href
+end
+
+Then(/^I click on Post Office Locator link$/) do
+  usps.home_page.post_office_locator_link.click
+  sleep 5
 end
